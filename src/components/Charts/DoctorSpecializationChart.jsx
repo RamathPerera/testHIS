@@ -1,4 +1,3 @@
-// Import necessary modules
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
@@ -25,27 +24,26 @@ const DoctorSpecializationPieChart = ({ data }) => {
   };
 
   return (
-    <div className="bg-white p-4 shadow-lg rounded-lg">
+    <div className="bg-white p-4 shadow-lg rounded-lg w-full max-w-sm lg:max-w-md mx-auto">
       <h3 className="text-xl font-semibold mb-2">Doctors by Specialization</h3>
-      <Doughnut data={specializationData} />
+      <Doughnut data={specializationData} options={{ responsive: true }} />
     </div>
   );
 };
 
 // Example usage of the DoctorSpecializationPieChart component
-const DoctorChart = () => {
+const DoctorSpecializationChart = () => {
   const doctorsData = {
     specializations: [40, 30, 20, 10, 15], // Example data for doctor specializations
   };
 
   return (
-    <div className="flex items-center justify-center flex-col w-full lg:w-1/2">
-      <h1 className="text-2xl font-semibold mb-6">Doctor Chart</h1>
-      <div className="flex gap-6 items-center justify-center">
+    <div className="flex items-center justify-start flex-col w-full lg:w-1/2 overflow-x-scroll">
+      <div className="flex gap-6 items-center justify-start">
         <DoctorSpecializationPieChart data={doctorsData} />
       </div>
     </div>
   );
 };
 
-export default DoctorChart;
+export default DoctorSpecializationChart;
