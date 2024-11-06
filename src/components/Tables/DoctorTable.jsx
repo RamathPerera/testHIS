@@ -1,5 +1,5 @@
 import React from "react";
-import LogoutButton from "./LogoutButton";
+import LogoutButton from "../Buttons/LogoutButton";
 
 const doctorsData = [
   { id: 1, name: "Dr. Smith", specialization: "Cardiology", hospital: "General Hospital", experience: 10, contact: "smith@example.com" },

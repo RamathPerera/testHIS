@@ -1,5 +1,5 @@
 import React from 'react'
-import AppointmentTable from '../components/AppoinmentTable'
+import AppointmentTable from '../components/Tables/AppointmentTable'
 
 function AppointmentPage() {
   return (

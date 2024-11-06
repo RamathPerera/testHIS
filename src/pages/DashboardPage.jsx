@@ -1,13 +1,13 @@
 import React from "react";
-import Card from "../components/Card";
-import PatientChart from "../components/PatientChart";
-import DoctorChart from "../components/DoctorChart";
+import Card from "../components/Cards/Card";
+import PatientChart from "../components/Charts/PatientChart";
+import DoctorChart from "../components/Charts/DoctorSpecializationChart";
 import { faHospital } from '@fortawesome/free-solid-svg-icons';
 import { faUserDoctor } from '@fortawesome/free-solid-svg-icons';
 import { faHospitalUser } from '@fortawesome/free-solid-svg-icons';
 import { faUserNurse } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons';
-import LogoutButton from "../components/LogoutButton";
+import LogoutButton from "../components/Buttons/LogoutButton";
 
 function DashboardPage() {
     return(

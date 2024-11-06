@@ -1,5 +1,5 @@
 import React from 'react'
-import NurseTable from '../components/NurseTable'
+import NurseTable from '../components/Tables/NurseTable'
 
 function NursePage() {
   return (
