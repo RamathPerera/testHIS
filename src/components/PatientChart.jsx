@@ -4,13 +4,13 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 
 // Register the necessary chart components
 ChartJS.register(
-  CategoryScale,    // Register the category scale
-  LinearScale,      // Register the linear scale (for values on the Y axis)
-  PointElement,     // Register the point element (for data points)
-  LineElement,      // Register the line element
-  Title,            // Register the title component
-  Tooltip,          // Register the tooltip component
-  Legend            // Register the legend component
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
 );
 
 function PatientChart() {
@@ -63,10 +63,12 @@ function PatientChart() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center flex-col w-full lg:w-1/2">
+    <div className="flex items-center justify-center flex-col w-full">
       <h1 className="text-2xl font-semibold mb-6">Patients Chart</h1>
-      <div className="w-full h-64 sm:h-80 md:h-96 flex items-center justify-center">
-        <Line ref={chartRef} data={data} options={options} />
+      <div className="chart-container w-full sm:w-11/12 md:w-9/12 lg:w-8/12 xl:w-7/12 2xl:w-6/12" style={{ minWidth: '400px' }}>
+        <div className="w-full">
+          <Line ref={chartRef} data={data} options={options} />
+        </div>
       </div>
     </div>
   );
