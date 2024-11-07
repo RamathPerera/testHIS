@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.react-calendar__tile.highlighted {
+    background-color: #5f0576; /* Yellow or any color you prefer */
+    color: white;
+    border-radius: 50%; /* Make the tile rounded */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Optional transition for smooth effect */
+  }
+  
+  .react-calendar__tile.highlighted:focus {
+    outline: none;
+  }
