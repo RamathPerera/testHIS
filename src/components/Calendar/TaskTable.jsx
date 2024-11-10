@@ -15,24 +15,23 @@ function TaskTable({ selectedDate, onPreviousDay, onNextDay, appointments }) {
     '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM', '10 PM', '11 PM'
   ];
 
-  // Get appointments for the selected date
   const appointmentsForSelectedDate = appointments;
 
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'accepted':
-        return 'bg-green-400'; // Green background for approved appointments
-      case 'rejected':
-        return 'bg-red-400';   // Red background for rejected appointments
-      case 'pending':
-        return 'bg-yellow-300'; // Yellow background for pending appointments
-      default:
-        return 'bg-gray-400';   // Default gray for unrecognized status
-    }
-  };
+//   const getStatusColor = (status) => {
+//     switch (status) {
+//       case 'accepted':
+//         return 'bg-green-400';
+//       case 'rejected':
+//         return 'bg-red-400';
+//       case 'pending':
+//         return 'bg-yellow-300';
+//       default:
+//         return 'bg-purple-300';  
+//     }
+//   };
 
   return (
-    <div className="w-full h-full bg-custom-gray rounded-lg flex flex-col p-5 gap-6 max-h-96 overflow-y-auto">
+    <div className="w-full h-full bg-white shadow-lg rounded-lg flex flex-col p-5 gap-6 max-h-[30rem] overflow-y-auto">
       <div className="flex flex-row items-center justify-between">
         <h1 className="text-black text-xl font-semibold">Upcoming Appointments</h1>
         <div className="text-black flex flex-row gap-2">
@@ -69,16 +68,14 @@ function TaskTable({ selectedDate, onPreviousDay, onNextDay, appointments }) {
             {appointmentsForSelectedDate
               .filter((appointment) => appointment.time === time)
               .map((appointment, idx) => (
-                <div key={idx} className={`text-black text-md flex flex-col gap-1 p-5 mb-2 ${getStatusColor(appointment.status)}`}>
+                // <div key={idx} className={`text-black text-md flex flex-col gap-1 p-5 mb-2 ${getStatusColor(appointment.status)}`}>
+                <div key={idx} className="text-black text-md flex flex-col gap-1 p-5 mb-2 bg-purple-300">
                     <div className='flex flex-row'>
                         <h1>Doctor:&nbsp;&nbsp;</h1>{appointment.doctor}
                     </div>
                     <div className='flex flex-row'>
                         <h1>Hospital:&nbsp;&nbsp;</h1>{appointment.hospital}
                     </div>
-                    <div className='flex flex-row'>
-                        <h1>Status:&nbsp;&nbsp;</h1>{appointment.status}
-                    </div>                    
                 </div>
               ))}
               </div>

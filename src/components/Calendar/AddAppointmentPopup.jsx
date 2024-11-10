@@ -1,51 +1,91 @@
 // AddAppointmentPopup.js
-import React from 'react';
+import React, { useState } from "react";
+import mailService from "../../services/mailService";
+import Swal from 'sweetalert2';
 
 function AddAppointmentPopup({ onClose }) {
+  const [formData, setFormData] = useState({
+    email: "",
+    content: "",
+    date: "",
+    time: "",
+    disease:"",
+    hospital:"",
+    doctor:"",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleAddCourse(formData);
+    onClose();
+  };
+
+  const handleAddCourse = async (mail) => {
+    console.log("Sending Mail with data:", mail);
+    try {
+        await mailService.sendMail(mail);
+        await Swal.fire('Success!', 'Mail Send Successfully');
+    } catch (error) {
+        console.error('Error sending mail:', error);
+    }
+  };
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-5">
       <div className="bg-white p-5 rounded-lg shadow-lg w-96">
         <h2 className="text-xl font-semibold mb-4">Add Appointment</h2>
-        <form>
-          {/* Disease Dropdown */}
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Disease</label>
+            <label className="text-sm">Disease</label>
             <select className="mt-1 p-2 border w-full rounded-md">
-              <option value="">Select Disease</option>
-              <option value="flu">Flu</option>
-              <option value="cold">Cold</option>
-              <option value="diabetes">Diabetes</option>
-              <option value="hypertension">Hypertension</option>
-              <option value="asthma">Asthma</option>
-              {/* Add more options as needed */}
+              <option>Select Disease</option>
+              <option>Flu</option>
+              <option>Cold</option>
+              <option>Diabetes</option>
+              <option>Hypertension</option>
+              <option>Asthma</option>
             </select>
           </div>
-
-          {/* Hospital Dropdown */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Hospital</label>
+            <label className="text-sm">Hospital</label>
             <select className="mt-1 p-2 border w-full rounded-md">
-              <option value="">Select Hospital</option>
-              <option value="hospital-a">General Hospital A</option>
-              <option value="hospital-b">City Hospital B</option>
-              <option value="hospital-c">Specialist Clinic C</option>
-              <option value="hospital-d">Community Health Center D</option>
-              {/* Add more options as needed */}
+              <option>Select Hospital</option>
+              <option>General Hospital A</option>
+              <option>City Hospital B</option>
+              <option>Specialist Clinic C</option>
             </select>
           </div>
-
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">Hospital</label>
+            <label className="text-sm">Doctor</label>
             <select className="mt-1 p-2 border w-full rounded-md">
-              <option value="">Select Doctor</option>
-              <option value="hospital-a">Doctor A</option>
-              <option value="hospital-b">Doctor B</option>
-              <option value="hospital-c">Doctor C</option>
-              <option value="hospital-d">Doctor D</option>
-              {/* Add more options as needed */}
+              <option>Select Doctor</option>
+              <option>Doctor A</option>
+              <option>Doctor B</option>
             </select>
           </div>
-
+          <div className="mb-4">
+            <label className="text-sm">Doctor</label>
+            <input
+              name="email"
+              placeholder="Email"
+              onChange={handleChange}
+              required
+              className="w-full mb-2 p-2 border"
+              value={formData.email}
+            />
+            <input
+              name="content"
+              placeholder="Content"
+              onChange={handleChange}
+              required
+              className="w-full mb-2 p-2 border"
+              value={formData.content}
+            />
+          </div>
           <div className="flex justify-end">
             <button
               type="button"
@@ -54,7 +94,10 @@ function AddAppointmentPopup({ onClose }) {
             >
               Cancel
             </button>
-            <button type="submit" className="px-4 py-2 bg-purple-600 text-white rounded-md">
+            <button
+              type="submit"
+              className="px-4 py-2 bg-purple-600 text-white rounded-md"
+            >
               Save
             </button>
           </div>
