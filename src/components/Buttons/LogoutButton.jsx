@@ -1,14 +1,27 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 
 function LogoutButton() {
   const navigate = useNavigate();
     function handleLogout() {
         navigate('/login')
     }
+
+    function handleCalendar() {
+      navigate('/calendar')
+    }
     return (
       <div>
-        <div className="text-center p-2 flex items-end justify-end">
+        <div className="text-center p-2 flex items-center justify-end gap-5">
+            <FontAwesomeIcon
+              icon={faCalendarDays}
+              size="2x"
+              className="text-gray-800 mb-2 cursor-pointer"
+              onClick={handleCalendar}
+                  
+            />
             <button className="w-1/3 lg:w-1/12 bg-red-500 text-white font-semibold py-2 rounded-lg hover:bg-red-700 transition duration-200" onClick={handleLogout}>
                 LOGOUT
             </button>

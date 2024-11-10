@@ -6,6 +6,7 @@ import DoctorPage from "./pages/DoctorPage";
 import NursePage from "./pages/NursePage";
 import AppointmentPage from "./pages/AppointmentPage";
 import PatientPage from "./pages/PatientPage";
+import CalendarPage from "./pages/CalendarPage";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -33,6 +34,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/appointments" element={<AppointmentPage />} />
+        </Routes>
+        <Routes>
+          <Route path="/calendar" element={<CalendarPage />} />
         </Routes>
       </BrowserRouter>
     </div>
