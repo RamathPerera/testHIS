@@ -1,19 +1,12 @@
 import React from "react"
-import LoginPage from "./pages/LoginPage"
-import DashboardPage from "./pages/DashboardPage";
-import HospitalPage from "./pages/HospitalPage";
-import DoctorPage from "./pages/DoctorPage";
-import NursePage from "./pages/NursePage";
-import AppointmentPage from "./pages/AppointmentPage";
-import PatientPage from "./pages/PatientPage";
-import CalendarPage from "./pages/CalendarPage";
+import AllRoutes from './routes/allRoutes.jsx'
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
         </Routes>
@@ -38,7 +31,12 @@ function App() {
         <Routes>
           <Route path="/calendar" element={<CalendarPage />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
+        <BrowserRouter>
+          <Routes>
+              <Route path="/*" element={<AllRoutes />} />
+          </Routes>
+        </BrowserRouter>
     </div>
   )
 }
