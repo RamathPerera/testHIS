@@ -2,11 +2,14 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
+import authService from '../../services/authService';
 
 function LogoutButton() {
   const navigate = useNavigate();
     function handleLogout() {
-        navigate('/login')
+        authService.logout();
+        navigate('/login');
+        window.location.reload();
     }
 
     function handleCalendar() {
