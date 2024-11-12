@@ -10,6 +10,7 @@ import PatientPage from '../pages/PatientPage';
 import CalendarPage from '../pages/CalendarPage';
 import RegistrationPage from '../pages/RegistrationPage';
 import HomePage from '../pages/HomePage';
+import CrudPage from '../pages/CrudPage';
 
 function AllRoutes() {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
@@ -67,6 +68,10 @@ function AllRoutes() {
       <Route
         path="/calendar"
         element={isAuthenticated ? <CalendarPage /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/crud"
+        element={isAuthenticated ? <CrudPage /> : <Navigate to="/login" />}
       />
       </Routes>
   );
