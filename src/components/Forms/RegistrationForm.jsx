@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/authService';
+import Swal from 'sweetalert2'; // Import SweetAlert
 
 function RegistrationForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleRegister = async (event) => {
     event.preventDefault();
@@ -15,14 +16,33 @@ function RegistrationForm() {
     // Check if passwords match
     if (password !== confirmPassword) {
       setErrorMessage("Passwords do not match.");
+      Swal.fire({
+        title: 'Error!',
+        text: "Passwords do not match.",
+        icon: 'error',
+        confirmButtonText: 'Try Again',
+      });
       return;
     }
     
     try {
       await authService.register(username, password);
-      navigate('/login'); // Redirect to login after successful registration
+      Swal.fire({
+        title: 'Success!',
+        text: 'Registration successful! Please log in.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+      }).then(() => {
+        navigate('/login'); // Redirect to login after successful registration
+      });
     } catch (error) {
       setErrorMessage(error.message);
+      Swal.fire({
+        title: 'Error!',
+        text: error.message,
+        icon: 'error',
+        confirmButtonText: 'Try Again',
+      });
     }
   };
 
@@ -34,7 +54,7 @@ function RegistrationForm() {
         <form className="space-y-6" onSubmit={handleRegister}>
           <div className="flex flex-col gap-2">
             <label className="text-gray-700 text-lg">User Name</label>
-            <input 
+            <input
               type="text"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg"
               placeholder="Enter your username"
@@ -46,7 +66,7 @@ function RegistrationForm() {
 
           <div className="flex flex-col gap-2">
             <label className="text-gray-700 text-lg">Password</label>
-            <input 
+            <input
               type="password"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg"
               placeholder="Enter your password"
@@ -58,7 +78,7 @@ function RegistrationForm() {
 
           <div className="flex flex-col gap-2">
             <label className="text-gray-700 text-lg">Confirm Password</label>
-            <input 
+            <input
               type="password"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg"
               placeholder="Confirm your password"

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Calender from "../components/Calendar/Calender";
 import TaskTable from "../components/Calendar/TaskTable";
 import { format } from "date-fns"; // Import date-fns
+import LogoutButton from "../components/Buttons/LogoutButton";
 
 function CalendarPage() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -75,8 +76,10 @@ function CalendarPage() {
   };
 
   return (
+    <div className="bg-purple-100 h-screen">
+      <LogoutButton />
     <div className="flex flex-col justify-center items-center">
-      <div className="text-6xl py-5">
+      <div className="text-4xl p-5 bg-purple-400 rounded-lg">
         <h1>Appointment Calendar</h1>
       </div>
       <div className="flex flex-col md:flex-row w-full h-full justify-center items-center gap-10 p-5">
@@ -96,6 +99,7 @@ function CalendarPage() {
           />
         </div>
       </div>
+    </div>
     </div>
   );
 }
